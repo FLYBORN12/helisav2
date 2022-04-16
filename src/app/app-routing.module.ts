@@ -2,39 +2,32 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 // layouts
-import { HomeComponent } from "./layouts/home/home.component";
-import { AuthComponent } from "./layouts/auth/auth.component";
+import { DashboardAdminComponent } from "./modules/admin/admin.component";
 
 // auth views
-import { LoginComponent } from "./views/auth/login/login.component";
-import { RegisterComponent } from "./views/auth/register/register.component";
+import { LoginComponent } from "./modules/oauth/oauth.component";
+//import { RegisterComponent } from "./views/auth/register/register.component";
 
-// no layouts views
-import { IndexComponent } from "./views/index/index.component";
-import { LandingComponent } from "./views/landing/landing.component";
+
 import { ProfileComponent } from "./views/profile/profile.component";
 
 const routes: Routes = [
   // admin views
   {
     path: "admin",
-    component: HomeComponent,
+    component: DashboardAdminComponent,
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
   },
   // auth views
   {
-    path: "auth",
-    component: AuthComponent,
-    children: [
-      { path: "login", component: LoginComponent },
-      { path: "register", component: RegisterComponent },
-      { path: "", redirectTo: "login", pathMatch: "full" },
-    ],
+    path: "oauth",
+    component: LoginComponent,
+    loadChildren: () => import('./modules/oauth/oauth.module').then(m => m.OauthModule)
   },
   // no layout views
   { path: "profile", component: ProfileComponent },
-  { path: "landing", component: LandingComponent },
-  { path: "", component: IndexComponent },
+  { path:"login", component: LoginComponent },
+  { path: "", component: LoginComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 

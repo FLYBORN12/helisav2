@@ -1,45 +1,46 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-// layouts
-import { HomeComponent } from "./layouts/home/home.component";
-import { AuthComponent } from "./layouts/auth/auth.component";
 
 // admin views
 import { AdminModule } from "./modules/admin/admin.module";
 
 
 // auth views
-import { LoginComponent } from "./views/auth/login/login.component";
-import { RegisterComponent } from "./views/auth/register/register.component";
+import { OauthModule } from "./modules/oauth/oauth.module";
 
 // no layouts views
-import { IndexComponent } from "./views/index/index.component";
-import { LandingComponent } from "./views/landing/landing.component";
 import { ProfileComponent } from "./views/profile/profile.component";
 
-// Components pages
-import { SharedModule } from "./modules/shared/shared.module";
+// components for views and layouts
+import { CardProfileComponent } from "./shared/components/cards/card-profile/card-profile.component";
+import { CardSettingsComponent } from "./shared/components/cards/card-settings/card-settings.component";
+import { MapExampleComponent } from "./shared/components/maps/map-example/map-example.component";
+import { TableDropdownComponent } from "./shared/components/dropdowns/table-dropdown/table-dropdown.component";
+import { PagesDropdownComponent } from "./shared/components/dropdowns/pages-dropdown/pages-dropdown.component";
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    AuthComponent,
-    LoginComponent,
-    RegisterComponent,
-    IndexComponent,
-    LandingComponent,
+    PagesDropdownComponent,
+    TableDropdownComponent,
+    CardProfileComponent,
+    CardSettingsComponent,
     ProfileComponent,
+    MapExampleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminModule,
-    SharedModule
+    CoreModule,
+    OauthModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent],
